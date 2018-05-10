@@ -102,3 +102,4 @@ resource "aws_elb" "farrukh" {
 output  "elb_dns_name" {
 	value = "${aws_elb.farrukh.dns_name}"	
 }
+
