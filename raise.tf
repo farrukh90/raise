@@ -1,6 +1,12 @@
+variable "access_key" {
+	description = "Please enter  access key with privileges"
+}
+variable "secret_key" {
+	description = "Please enter your secret key"
+}
 provider "aws" {
-	access_key = ""
-	secret_key = ""
+	access_key = "${var.access_key}"
+	secret_key = "${var.secret_key}"
 	region = "eu-west-1"
 
 }
@@ -91,24 +97,8 @@ resource "aws_elb" "farrukh" {
 		target = "HTTP:80/"
 	}
 }
-#resource "aws_security_group" "farrukh_sec_group" {
-#	name = "terraform-sec-group"
-#	ingress {
-#		from_port = 80
-#		to_port = 80
-#		protocol = "tcp"
-#		cidr_blocks = ["0.0.0.0/0"]	
-#	}
-#	ingress {
-#		from_port = 443
-#		to_port = 443
-#		protocol = "tcp"
-#		cidr_blocks = ["0.0.0.0/0"]
-#	}
-#}
 
 
 output  "elb_dns_name" {
 	value = "${aws_elb.farrukh.dns_name}"	
 }
-
